@@ -1,6 +1,5 @@
 import { z } from 'zod';
 const ProductSchema = z.object({
-  id: z.string().uuid(), // Assuming ID should be a UUID, adjust if needed
   name: z.string().min(1, 'Name is required'),
   price: z.number().positive('Price must be a positive number'),
   stockQuantity: z

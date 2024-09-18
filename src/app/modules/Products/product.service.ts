@@ -1,8 +1,8 @@
-import { TProducts } from './Product.interface';
-import ProductModel from './product.model';
+import { TProducts } from './product.interface';
+import productModel from './product.model';
 
 const createProduct = async (product: TProducts) => {
-  const result = await ProductModel.create(product);
+  const result = await productModel.create(product);
   return result;
 };
 
