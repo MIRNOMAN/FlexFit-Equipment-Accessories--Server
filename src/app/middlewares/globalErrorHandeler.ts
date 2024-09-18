@@ -3,13 +3,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ErrorRequestHandler } from 'express';
 import { ZodError } from 'zod';
+import config from '../config';
 import { TErrorSources } from '../interface/error';
 import { handleZodError } from '../error/handleZodError';
 import { handleValidationError } from '../error/handleValidationError';
 import { handleCastError } from '../error/handleCastError';
 import { handleDuplicateError } from '../error/handleDuplicateError';
 import { AppError } from '../error/appError';
-import config from '../config';
 
 export const globalErrorHandler: ErrorRequestHandler = (
   err,
