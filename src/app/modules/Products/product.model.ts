@@ -8,7 +8,7 @@ const productSchema = new Schema<TProducts>(
     category: { type: String, required: true },
     description: { type: String, required: true },
     stockQuantity: { type: Number, required: true },
-    images: { type: [String], required: false },
+    images: { type: [String], required: true },
     isDeleted: { type: Boolean, default: false },
   },
   {
@@ -16,5 +16,5 @@ const productSchema = new Schema<TProducts>(
   },
 );
 
-const productModel = model<TProducts>('product', productSchema);
+const productModel = model<TProducts>('Product', productSchema);
 export default productModel;
