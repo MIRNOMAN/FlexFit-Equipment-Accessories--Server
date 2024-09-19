@@ -1,4 +1,4 @@
-import { TProducts } from './product.interface';
+import { TProductRequestBody, TProducts } from './product.interface';
 import productModel from './product.model';
 
 const createProduct = async (product: TProducts) => {
@@ -16,8 +16,17 @@ const findAllProducts = async () => {
   return result;
 };
 
+const updateProductById = async (
+  id: string,
+  updateData: Partial<TProductRequestBody>,
+) => {
+  const result = await productModel.findByIdAndUpdate(id, updateData);
+  return result;
+};
+
 export const productServices = {
   createProduct,
   findProductById,
   findAllProducts,
+  updateProductById,
 };

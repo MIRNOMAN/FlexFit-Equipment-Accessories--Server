@@ -10,6 +10,17 @@ const productSchema = z.object({
   isDeleted: z.boolean().optional(),
 });
 
+const updateproductSchema = z.object({
+  name: z.string().optional(),
+  price: z.number().optional(),
+  stockQuantity: z.number().int().optional(),
+  description: z.string().optional(),
+  images: z.array(z.string()).optional(),
+  category: z.string().optional(),
+  isDeleted: z.boolean().optional(),
+});
+
 export const productsValidation = {
   productSchema,
+  updateproductSchema,
 };
