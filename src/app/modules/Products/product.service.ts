@@ -24,9 +24,15 @@ const updateProductById = async (
   return result;
 };
 
+const deleteProductById = async (id: string) => {
+  const result = await productModel.findByIdAndUpdate(id, { isDeleted: true });
+  return result;
+};
+
 export const productServices = {
   createProduct,
   findProductById,
   findAllProducts,
   updateProductById,
+  deleteProductById,
 };
