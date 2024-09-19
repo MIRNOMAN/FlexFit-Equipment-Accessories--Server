@@ -24,9 +24,25 @@ const createProduct = catchAsync(async (req, res) => {
     message: 'products created successfully',
     data: product,
   });
-  return product;
 });
 
+const getAllProducts = catchAsync(async (req, res) => {
+  const product = await productServices.findAllProducts();
+  if (product.length === 0) {
+    res.status(404).json({
+      success: false,
+      message: 'No Data Found',
+      data: [],
+    });
+  }
+  res.status(200).json({
+    success: true,
+    statusCode: 200,
+    message: 'Product retrieved successfully',
+    data: product,
+  });
+});
 export const productController = {
   createProduct,
+  getAllProducts,
 };
