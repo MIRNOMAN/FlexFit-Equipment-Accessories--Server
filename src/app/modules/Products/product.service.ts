@@ -11,7 +11,13 @@ const findProductById = async (id: string) => {
   return result;
 };
 
+const findAllProducts = async () => {
+  const result = await productModel.find({ isDeleted: false });
+  return result;
+};
+
 export const productServices = {
   createProduct,
   findProductById,
+  findAllProducts,
 };
