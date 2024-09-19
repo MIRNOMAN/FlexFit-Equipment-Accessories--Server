@@ -42,7 +42,28 @@ const getAllProducts = catchAsync(async (req, res) => {
     data: product,
   });
 });
+
+const getProductById = catchAsync(async (req, res) => {
+  const { id } = req.params;
+
+  const product = await productServices.findProductById(id);
+  if (!product) {
+    return res.status(404).json({
+      success: false,
+      message: 'Product not found',
+      data: [],
+    });
+  }
+  res.status(200).json({
+    success: true,
+    statusCode: 200,
+    message: 'Product retrieved successfully',
+    data: product,
+  });
+});
+
 export const productController = {
   createProduct,
   getAllProducts,
+  getProductById,
 };
