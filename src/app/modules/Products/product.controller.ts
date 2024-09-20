@@ -84,11 +84,11 @@ const updateProduct = catchAsync(async (req, res) => {
 });
 
 const deleteProduct = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const deleteProduct = await productServices.deleteProductById({
+    params: { id: req.params.id },
+  });
 
-  const product = await productServices.deleteProductById(id);
-
-  if (!product) {
+  if (!deleteProduct) {
     return res.status(404).json({
       success: false,
       statusCode: 404,
@@ -100,7 +100,7 @@ const deleteProduct = catchAsync(async (req, res) => {
     success: true,
     statusCode: 200,
     message: 'Product updated successfully',
-    data: product,
+    data: deleteProduct,
   });
 });
 
