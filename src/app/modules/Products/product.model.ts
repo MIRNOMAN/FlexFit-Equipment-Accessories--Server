@@ -1,9 +1,11 @@
+import { v4 as uuidv4 } from 'uuid';
 import { model, Schema } from 'mongoose';
 import { TProducts } from './product.interface';
 
 const productSchema = new Schema<TProducts>(
   {
-    name: { type: String, required: true },
+    id: { type: String, default: uuidv4, unique: true },
+    name: { type: String, required: true, unique: true },
     price: { type: Number, required: true },
     category: { type: String, required: true },
     description: { type: String, required: true },

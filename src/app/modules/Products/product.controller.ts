@@ -3,25 +3,21 @@ import { productServices } from './product.service';
 import { productsValidation } from './product.validations';
 
 const createProduct = catchAsync(async (req, res) => {
-  const productData = req.body;
+  const product = await productServices.createProduct(req.body);
 
-  // const validation = productsValidation.productSchema.safeParse(productData);
+  if (!product) {
+    return res.status(404).json({
+      success: false,
+      statusCode: 404,
+      message: 'product not found',
+      data: [],
+    });
+  }
 
-  // if (!validation.success) {
-  //   return res.status(400).json({
-  //     success: false,
-  //     statusCode: 400,
-  //     message: 'Invalid product data',
-  //     error: validation.error.errors,
-  //   });
-  // }
-
-  const product = await productServices.createProduct(productData);
-
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     statusCode: 200,
-    message: 'products created successfully',
+    message: 'product created successfully',
     data: product,
   });
 });
