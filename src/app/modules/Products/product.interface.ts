@@ -7,3 +7,12 @@ export type TProducts = {
   category: string;
   isDeleted?: boolean;
 };
+
+export type TProductRequestBody = {
+  name?: string;
+  price?: number;
+  category?: string;
+  description?: string;
+  quantity?: number;
+  image?: string[];
+};

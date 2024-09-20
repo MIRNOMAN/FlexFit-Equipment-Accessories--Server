@@ -15,7 +15,6 @@ const updateproductSchema = z.object({
   price: z.number().optional(),
   stockQuantity: z.number().int().optional(),
   description: z.string().optional(),
-  images: z.array(z.string()).optional(),
   category: z.string().optional(),
   isDeleted: z.boolean().optional(),
 });

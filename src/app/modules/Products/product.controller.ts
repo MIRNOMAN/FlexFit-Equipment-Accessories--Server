@@ -1,5 +1,6 @@
 import { catchAsync } from '../../utils/catchAsync';
 import { productServices } from './product.service';
+import { productsValidation } from './product.validations';
 
 const createProduct = catchAsync(async (req, res) => {
   const productData = req.body;
@@ -63,7 +64,7 @@ const getProductById = catchAsync(async (req, res) => {
 
 const updateProduct = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const updateData = req.body;
+  const updateData = productsValidation.updateproductSchema.parse(req.body);
 
   const product = await productServices.updateProductById(id, updateData);
 

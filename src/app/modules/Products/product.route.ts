@@ -12,7 +12,7 @@ router.post(
 );
 router.get('/', productController.getAllProducts);
 router.get('/:id', productController.getProductById);
-router.patch('/:id', productController.updateProduct);
+router.put('/:id', productController.updateProduct);
 router.delete('/:id', productController.deleteProduct);
 
 export const productRouter = router;

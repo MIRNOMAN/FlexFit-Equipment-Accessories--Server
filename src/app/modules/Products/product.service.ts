@@ -18,9 +18,11 @@ const findAllProducts = async () => {
 
 const updateProductById = async (
   id: string,
-  updateData: Partial<TProductRequestBody>,
+  updateData: Partial<TProducts>,
 ) => {
-  const result = await productModel.findByIdAndUpdate(id, updateData);
+  const result = await productModel.findByIdAndUpdate(id, updateData, {
+    new: true,
+  });
   return result;
 };
 
