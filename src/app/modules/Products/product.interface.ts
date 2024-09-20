@@ -8,11 +8,8 @@ export type TProducts = {
   isDeleted?: boolean;
 };
 
-export type TProductRequestBody = {
-  name?: string;
-  price?: number;
-  category?: string;
-  description?: string;
-  quantity?: number;
-  image?: string[];
+export type DeleteServiceInput = {
+  params: {
+    id: string;
+  };
 };

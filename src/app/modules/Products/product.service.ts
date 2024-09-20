@@ -1,4 +1,4 @@
-import { TProductRequestBody, TProducts } from './product.interface';
+import { DeleteServiceInput, TProducts } from './product.interface';
 import productModel from './product.model';
 
 const createProduct = async (product: TProducts) => {
@@ -26,8 +26,15 @@ const updateProductById = async (
   return result;
 };
 
-const deleteProductById = async (id: string) => {
-  const result = await productModel.findByIdAndUpdate(id, { isDeleted: true });
+const deleteProductById = async (input: DeleteServiceInput) => {
+  const { id } = input.params;
+  const result = await productModel.findById(id);
+  if (!result) {
+    throw new Error('Service not found');
+  }
+  result.isDeleted = true; // Soft delete
+  await result.save();
+
   return result;
 };
 
