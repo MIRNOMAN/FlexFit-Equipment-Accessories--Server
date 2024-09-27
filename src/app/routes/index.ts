@@ -1,3 +1,4 @@
+import { checkoutRouter } from './../modules/checkout/checkout.route';
 import { Router } from 'express';
 import { productRouter } from '../modules/Products/product.route';
 import { AuthRoutes } from '../modules/user/user.route';
@@ -12,6 +13,10 @@ const moduleRoutes = [
   {
     path: '/auth',
     route: AuthRoutes,
+  },
+  {
+    path: '',
+    route: checkoutRouter,
   },
 ];
 
