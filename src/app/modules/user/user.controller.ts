@@ -33,7 +33,15 @@ const loginUser = catchAsync(async (req, res) => {
 
 const getUser = catchAsync(async (req, res) => {
   const authHeader = req.headers.authorization;
-  const token = authHeader!.split(' ')[1];
+
+  if (!authHeader) {
+    throw new AppError(
+      httpStatus.UNAUTHORIZED,
+      'Authorization header is missing',
+    );
+  }
+
+  const token = authHeader.split(' ')[1];
   if (!token) {
     throw new AppError(
       httpStatus.UNAUTHORIZED,

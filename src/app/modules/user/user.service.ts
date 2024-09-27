@@ -1,3 +1,4 @@
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import httpStatus from 'http-status';
 import { TLoginInfo, TUser } from './user.interface';
 import { User } from './user.model';
@@ -50,6 +51,7 @@ const getUserFromDB = async (id: string) => {
   }
   return result;
 };
+
 export const UserServices = {
   createUserIntoDB,
   loginUser,
