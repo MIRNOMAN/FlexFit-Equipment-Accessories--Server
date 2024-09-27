@@ -1,4 +1,4 @@
-export type TOrder = {
+export interface IOrder {
   products: {
     productId: string;
     quantity: number;
@@ -6,4 +6,4 @@ export type TOrder = {
   totalAmount: number;
   paymentMethod: 'Cash on Delivery'; // Only COD allowed
   status: 'Pending' | 'Completed';
-};
+}

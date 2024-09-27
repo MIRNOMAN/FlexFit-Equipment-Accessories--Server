@@ -1,8 +1,9 @@
-import { TOrder } from './checkout.interface';
-import productModel from '../Products/product.model';
 import OrderModel from './checkout.model';
 
-const placeOrder = async (orderData: TOrder) => {
+import { IOrder } from './checkout.interface';
+import productModel from '../Products/product.model';
+
+const placeOrder = async (orderData: IOrder) => {
   // Check product stock availability and update it
   for (const item of orderData.products) {
     const product = await productModel.findById(item.productId);

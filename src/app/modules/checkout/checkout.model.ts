@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
-import { TOrder } from './checkout.interface';
+import { IOrder } from './checkout.interface';
 
-const orderSchema = new Schema<TOrder>(
+const orderSchema = new Schema<IOrder>(
   {
     products: [
       {
@@ -24,5 +24,5 @@ const orderSchema = new Schema<TOrder>(
   { timestamps: true },
 );
 
-const OrderModel = model<TOrder>('Order', orderSchema);
+const OrderModel = model<IOrder>('Order', orderSchema);
 export default OrderModel;

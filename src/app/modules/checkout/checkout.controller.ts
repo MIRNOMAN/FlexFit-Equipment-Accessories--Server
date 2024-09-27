@@ -1,7 +1,7 @@
-import { catchAsync } from './../../utils/catchAsync';
+import { Request, Response } from 'express';
 import productModel from '../Products/product.model';
 
-const createOrder = catchAsync(async (req, res) => {
+const createOrder = async (req: Request, res: Response) => {
   const { cartItems, user, paymentMethod } = req.body;
 
   try {
@@ -68,7 +68,7 @@ const createOrder = catchAsync(async (req, res) => {
       error: error,
     });
   }
-});
+};
 
 export const checkoutController = {
   createOrder,
