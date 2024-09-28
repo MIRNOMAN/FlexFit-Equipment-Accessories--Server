@@ -1,9 +1,23 @@
-import { Schema, model } from 'mongoose';
-import { IOrder } from './checkout.interface';
+import mongoose, { Schema, Document } from 'mongoose';
+
+export interface IOrder extends Document {
+  cartItems: {
+    productId: mongoose.Types.ObjectId;
+    quantity: number;
+  }[];
+  user: {
+    name: string;
+    email: string;
+    address: string;
+    phone: string;
+  };
+  paymentMethod: 'COD';
+  totalPrice: number;
+}
 
 const orderSchema = new Schema<IOrder>(
   {
-    products: [
+    cartItems: [
       {
         productId: {
           type: Schema.Types.ObjectId,
@@ -13,16 +27,24 @@ const orderSchema = new Schema<IOrder>(
         quantity: { type: Number, required: true },
       },
     ],
-    totalAmount: { type: Number, required: true },
-    paymentMethod: { type: String, enum: ['Cash on Delivery'], required: true },
-    status: {
-      type: String,
-      enum: ['Pending', 'Completed'],
-      default: 'Pending',
+    user: {
+      name: { type: String, required: true },
+      email: { type: String, required: true },
+      address: { type: String, required: true },
+      phone: { type: String, required: true },
     },
+    paymentMethod: {
+      type: String,
+      enum: ['COD'],
+      default: 'COD',
+      required: true,
+    },
+    totalPrice: { type: Number, required: true },
   },
-  { timestamps: true },
+  {
+    timestamps: true,
+  },
 );
 
-const OrderModel = model<IOrder>('Order', orderSchema);
+const OrderModel = mongoose.model<IOrder>('Order', orderSchema);
 export default OrderModel;
