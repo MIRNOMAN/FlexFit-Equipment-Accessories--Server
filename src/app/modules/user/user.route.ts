@@ -17,6 +17,6 @@ router.post(
   UserControllers.loginUser,
 );
 
-router.get('/user', UserControllers.getUser);
+router.get('/users/:userId', UserControllers.getUser);
 
 export const AuthRoutes = router;

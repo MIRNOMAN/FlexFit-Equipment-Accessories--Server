@@ -32,27 +32,13 @@ const loginUser = catchAsync(async (req, res) => {
 });
 
 const getUser = catchAsync(async (req, res) => {
-  const authHeader = req.headers.authorization;
+  // Assuming the userId is passed as a request parameter
+  const { userId } = req.params;
 
-  if (!authHeader) {
-    throw new AppError(
-      httpStatus.UNAUTHORIZED,
-      'Authorization header is missing',
-    );
+  if (!userId) {
+    throw new AppError(httpStatus.BAD_REQUEST, 'User ID is missing');
   }
 
-  const token = authHeader.split(' ')[1];
-  if (!token) {
-    throw new AppError(
-      httpStatus.UNAUTHORIZED,
-      'you are not authorized to access this',
-    );
-  }
-  const decoded = jwt.verify(
-    token,
-    config.jwt_access_secret as string,
-  ) as JwtPayload;
-  const userId = decoded?.userId;
   const result = await UserServices.getUserFromDB(userId);
 
   if (!result) {
