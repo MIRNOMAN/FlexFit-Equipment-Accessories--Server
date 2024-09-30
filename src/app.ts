@@ -8,7 +8,12 @@ const app: Application = express();
 
 //parsers
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(
+  cors({
+    origin: 'https://flexfit-equipmentclient.vercel.app',
+    credentials: true,
+  }),
+);
 
 app.use('/api', router);
 
